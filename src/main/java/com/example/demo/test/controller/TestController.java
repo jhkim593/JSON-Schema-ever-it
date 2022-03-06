@@ -9,10 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -25,8 +22,8 @@ public class TestController {
 
 
     @RequestMapping(value = "/json/test", method = RequestMethod.POST)
-    public ResponseEntity jsonTest(@RequestBody String body)  {
-        List<JsonSchemaErrorDto> conditionTest = jsonValidator.valid("conditionTest", body);
+    public ResponseEntity jsonTest(@RequestBody String body , @RequestParam String schemaName)  {
+        List<JsonSchemaErrorDto> conditionTest = jsonValidator.valid(schemaName, body);
         if(conditionTest==null){
             return new ResponseEntity(HttpStatus.OK);
         }

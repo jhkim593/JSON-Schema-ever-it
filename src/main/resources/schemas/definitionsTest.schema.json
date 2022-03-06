@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "person": {
+          "type": "object",
+          "messages": {
+            "type": "person type is invalid"
+          },
+          "properties": {
+            "personId": {
+              "type": "number",
+              "messages": {
+                "type": "personId type is invalid"
+              }
+            }
+          }
+        },
+        "value": {
+          "anyOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ],
+          "maxLength": 5,
+          "messages": {
+            "type": "value type is invalid",
+            "maxLength": "value maxLength is invalid"
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "value": {"type": "null"}
+        }
+      },
+      "then": {
+        "properties": {
+          "person": {
+            "required": ["personId"],
+            "requiredMessages": {
+              "personId": "personId required"
+            }
+          }
+        },
+        "required": ["person"],
+        "requiredMessages": {
+          "person": "person required"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "maxLength": 24,
+      "minLength": 2,
+      "messages": {
+        "type": "id type is invalid",
+        "maxLength": "id max Length is invalid",
+        "minLength": "id min Length is invalid"
+      }
+    },
+    "datalist": {
+      "type": ["array"],
+      "items": {
+        "$ref": "#/definitions/data"
+      },
+      "maxItems": 10
+    }
+  },
+
+  "required": ["id"]
+}

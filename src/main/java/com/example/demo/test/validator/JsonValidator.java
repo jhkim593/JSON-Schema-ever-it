@@ -136,6 +136,9 @@ public class JsonValidator {
                 }
 
             }
+            else {
+                return null;
+            }
         } catch (ValidationException e) {
             ArrayList<JsonSchemaErrorDto> errorDtoList = new ArrayList<>();
 

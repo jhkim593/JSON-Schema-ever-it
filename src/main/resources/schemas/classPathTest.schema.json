@@ -13,7 +13,7 @@
       }
     },
     "data": {
-      "$ref": "conditionTest.schema.json"
+      "$ref": "classpath://schemas/conditionTest.schema.json"
     }
   },
     "required": ["test"]

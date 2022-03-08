@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "test": {
+      "type": "integer",
+      "maxLength": 24,
+      "minLength": 2,
+      "messages": {
+        "type": "test type is invalid",
+        "maxLength": "test max Length is invalid",
+        "minLength": "test min Length is invalid"
+      }
+    },
+    "data": {
+      "$ref": "conditionTest.schema.json"
+    }
+  },
+    "required": ["test"]
+}
